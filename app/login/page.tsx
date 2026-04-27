@@ -286,13 +286,13 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
           </div>
           <span className="text-xs text-slate-600">Ingat saya</span>
         </button>
-        <link
+        <a
           href="#"
           className="text-xs font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
           Lupa kata sandi?
-        </link>
+        </a>
       </div>
 
       <SubmitButton state={state} onSubmit={handleSubmit} label="Masuk" />
@@ -412,21 +412,21 @@ function RegisterForm({ onSwitch }: { onSwitch: () => void }) {
 
       <p className="text-xs text-slate-400 leading-relaxed">
         Dengan mendaftar, Anda menyetujui{" "}
-        <link
+        <a
           href="#"
           className="font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
           Syarat
-        </link>{" "}
+        </a>{" "}
         dan{" "}
-        <link
+        <a
           href="#"
           className="font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
           Kebijakan Privasi
-        </link>{" "}
+        </a>{" "}
         kami.
       </p>
 
