@@ -1076,6 +1076,7 @@ const Step3 = ({
   tMaterial,
   setTStep,
   setTMaterial,
+  setTCourse,
   loadData,
 }: any) => {
   const freshCourse =
