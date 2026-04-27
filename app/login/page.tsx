@@ -286,13 +286,13 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
           </div>
           <span className="text-xs text-slate-600">Ingat saya</span>
         </button>
-        <a
+        <link
           href="#"
           className="text-xs font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
           Lupa kata sandi?
-        </a>
+        </link>
       </div>
 
       <SubmitButton state={state} onSubmit={handleSubmit} label="Masuk" />
@@ -412,21 +412,21 @@ function RegisterForm({ onSwitch }: { onSwitch: () => void }) {
 
       <p className="text-xs text-slate-400 leading-relaxed">
         Dengan mendaftar, Anda menyetujui{" "}
-        <a
+        <link
           href="#"
           className="font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
           Syarat
-        </a>{" "}
+        </link>{" "}
         dan{" "}
-        <a
+        <link
           href="#"
           className="font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
           Kebijakan Privasi
-        </a>{" "}
+        </link>{" "}
         kami.
       </p>
 
@@ -594,7 +594,7 @@ function BrandPanel() {
       />
 
       <div className="relative z-10 flex flex-col h-full p-12">
-        <a
+        <link
           href="/"
           className="flex items-center gap-2.5 mb-auto cursor-pointer w-fit"
         >
@@ -610,7 +610,7 @@ function BrandPanel() {
           >
             UBIG <span style={{ color: "#FF8C00" }}>LMS</span>
           </span>
-        </a>
+        </link>
 
         <div className="my-auto">
           <motion.div
@@ -723,7 +723,7 @@ export default function AuthPage() {
         {/* Panel Kanan (Form) */}
         <div className="flex-1 flex items-center justify-center p-6 sm:p-10 bg-white relative overflow-y-auto">
           {/* Logo untuk Mobile (Layar Kecil) */}
-          <a
+          <link
             href="/"
             className="lg:hidden absolute top-6 left-6 flex items-center gap-2 cursor-pointer"
           >
@@ -736,7 +736,7 @@ export default function AuthPage() {
             <span className="font-bold text-slate-900 text-lg tracking-tight">
               UBIG <span style={{ color: "#FF8C00" }}>LMS</span>
             </span>
-          </a>
+          </link>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
