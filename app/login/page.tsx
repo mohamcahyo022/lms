@@ -13,11 +13,11 @@ import {
   ArrowRight,
   Loader2,
   Check,
-  Sparkles,
   Brain,
   BarChart3,
   Zap,
   Star,
+  Sparkles,
 } from "lucide-react";
 import Swal from "sweetalert2";
 
@@ -33,7 +33,7 @@ const slideVariants = {
   center: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
   },
   exit: (dir: number) => ({
     x: dir * -36,
@@ -125,7 +125,7 @@ function PasswordStrength({ password }: { password: string }) {
           ? 2
           : 3;
   const colors = ["", "#EF4444", "#F59E0B", "#22C55E"];
-  const labels = ["", "Weak", "Fair", "Strong"];
+  const labels = ["", "Lemah", "Sedang", "Kuat"];
 
   if (!password) return null;
 
@@ -171,13 +171,12 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
     await LoginLogic.loginWithGoogle();
   };
 
-  // Memanggil LoginLogic untuk Email
   const handleSubmit = async () => {
     if (!email.trim() || !password.trim()) {
       Swal.fire({
         icon: "warning",
         title: "Perhatian",
-        text: "Email dan Password tidak boleh kosong!",
+        text: "Email dan Kata Sandi tidak boleh kosong!",
         confirmButtonColor: "#FF8C00",
       });
       return;
@@ -215,10 +214,10 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
     <div className="space-y-4" style={{ fontFamily: "Poppins, sans-serif" }}>
       <div className="mb-6">
         <h2 className="text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">
-          Welcome back
+          Selamat Datang
         </h2>
         <p className="text-sm text-slate-500">
-          Continue your learning journey.
+          Lanjutkan perjalanan belajar Anda bersama UBIG.
         </p>
       </div>
 
@@ -233,7 +232,7 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
       <div className="flex items-center gap-3">
         <div className="flex-1 h-px bg-slate-200" />
         <span className="text-xs text-slate-400 font-medium">
-          or continue with email
+          atau masuk dengan email
         </span>
         <div className="flex-1 h-px bg-slate-200" />
       </div>
@@ -241,7 +240,7 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
       <Field
         icon={Mail}
         type="email"
-        placeholder="Email address"
+        placeholder="Alamat email"
         value={email}
         onChange={setEmail}
         autoComplete="email"
@@ -249,7 +248,7 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
       <Field
         icon={Lock}
         type={showPass ? "text" : "password"}
-        placeholder="Password"
+        placeholder="Kata sandi"
         value={password}
         onChange={setPassword}
         autoComplete="current-password"
@@ -285,18 +284,18 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
               )}
             </AnimatePresence>
           </div>
-          <span className="text-xs text-slate-600">Remember me</span>
+          <span className="text-xs text-slate-600">Ingat saya</span>
         </button>
         <a
           href="#"
           className="text-xs font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
-          Forgot password?
+          Lupa kata sandi?
         </a>
       </div>
 
-      <SubmitButton state={state} onSubmit={handleSubmit} label="Sign In" />
+      <SubmitButton state={state} onSubmit={handleSubmit} label="Masuk" />
       <p className="text-center text-xs text-slate-500 pt-1">
         Belum punya akun?{" "}
         <button
@@ -304,7 +303,7 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
           className="font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
-          Buat sekarang
+          Daftar sekarang
         </button>
       </p>
     </div>
@@ -320,18 +319,12 @@ function RegisterForm({ onSwitch }: { onSwitch: () => void }) {
   const [showPass, setShowPass] = useState(false);
   const [state, setState] = useState<SubmitState>("idle");
 
-  // Memanggil LoginLogic untuk Google
-  const handleGoogleLogin = async () => {
-    await LoginLogic.loginWithGoogle();
-  };
-
-  // Memanggil LoginLogic untuk Register Email
   const handleSubmit = async () => {
     if (!email.trim() || !password.trim() || !name.trim()) {
       Swal.fire({
         icon: "warning",
         title: "Perhatian",
-        text: "Nama, Email, dan Password harus diisi semua!",
+        text: "Nama, Email, dan Kata Sandi harus diisi semua!",
         confirmButtonColor: "#FF8C00",
       });
       return;
@@ -369,15 +362,17 @@ function RegisterForm({ onSwitch }: { onSwitch: () => void }) {
     <div className="space-y-4" style={{ fontFamily: "Poppins, sans-serif" }}>
       <div className="mb-6">
         <h2 className="text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">
-          Create account
+          Buat Akun
         </h2>
-        <p className="text-sm text-slate-500">Buat Akun Baru.</p>
+        <p className="text-sm text-slate-500">
+          Mulai tingkatkan keahlian IT Anda.
+        </p>
       </div>
 
       <Field
         icon={User}
         type="text"
-        placeholder="Full name"
+        placeholder="Nama lengkap"
         value={name}
         onChange={setName}
         autoComplete="name"
@@ -386,7 +381,7 @@ function RegisterForm({ onSwitch }: { onSwitch: () => void }) {
       <Field
         icon={Mail}
         type="email"
-        placeholder="Email address"
+        placeholder="Alamat email"
         value={email}
         onChange={setEmail}
         autoComplete="email"
@@ -396,7 +391,7 @@ function RegisterForm({ onSwitch }: { onSwitch: () => void }) {
         <Field
           icon={Lock}
           type={showPass ? "text" : "password"}
-          placeholder="Create a password"
+          placeholder="Buat kata sandi"
           value={password}
           onChange={setPassword}
           autoComplete="new-password"
@@ -416,38 +411,34 @@ function RegisterForm({ onSwitch }: { onSwitch: () => void }) {
       </div>
 
       <p className="text-xs text-slate-400 leading-relaxed">
-        By creating an account you agree to our{" "}
+        Dengan mendaftar, Anda menyetujui{" "}
         <a
           href="#"
           className="font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
-          Terms
+          Syarat
         </a>{" "}
-        and{" "}
+        dan{" "}
         <a
           href="#"
           className="font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
-          Privacy Policy
-        </a>
-        .
+          Kebijakan Privasi
+        </a>{" "}
+        kami.
       </p>
 
-      <SubmitButton
-        state={state}
-        onSubmit={handleSubmit}
-        label="Create Account"
-      />
+      <SubmitButton state={state} onSubmit={handleSubmit} label="Daftar Akun" />
       <p className="text-center text-xs text-slate-500 pt-1">
-        Already have an account?{" "}
+        Sudah punya akun?{" "}
         <button
           onClick={onSwitch}
           className="font-semibold hover:underline cursor-pointer"
           style={{ color: "#FF8C00" }}
         >
-          Sign in
+          Masuk
         </button>
       </p>
     </div>
@@ -519,7 +510,7 @@ function SubmitButton({
             animate={{ opacity: 1, scale: 1 }}
             className="flex items-center gap-2"
           >
-            <Check size={18} /> Done!
+            <Check size={18} /> Selesai!
           </motion.div>
         ) : (
           <motion.div
@@ -561,6 +552,137 @@ function GoogleIcon({ size = 16 }: { size?: number }) {
 }
 
 // ─── Left Branding Panel ──────────────────────────────────────────────────────
+function BrandPanel() {
+  const features = [
+    { icon: Brain, text: "Kurikulum adaptif yang menyesuaikan kemampuan Anda" },
+    {
+      icon: BarChart3,
+      text: "Analitik real-time dan pemantauan progres belajar",
+    },
+    { icon: Zap, text: "Evaluasi dan umpan balik instan pada setiap kuis" },
+    { icon: Star, text: "Terbukti meningkatkan nilai kelulusan hingga 15,6%" },
+  ];
+  return (
+    <div
+      className="hidden lg:flex lg:flex-col h-full w-[45%] relative overflow-hidden shrink-0"
+      style={{
+        background:
+          "linear-gradient(145deg, #FFF7ED 0%, #FFFBF5 60%, #FEF3C7 100%)",
+      }}
+    >
+      <div
+        className="absolute inset-0 opacity-40 pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,140,0,0.25) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+      <div
+        className="absolute -top-32 -right-32 w-80 h-80 rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,140,0,0.18) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,167,38,0.14) 0%, transparent 70%)",
+        }}
+      />
+
+      <div className="relative z-10 flex flex-col h-full p-12">
+        <a
+          href="/"
+          className="flex items-center gap-2.5 mb-auto cursor-pointer w-fit"
+        >
+          <div
+            className="w-9 h-9 rounded-xl flex items-center justify-center"
+            style={{ background: "#FF8C00" }}
+          >
+            <GraduationCap size={19} className="text-white" />
+          </div>
+          <span
+            className="font-bold text-slate-900 text-xl tracking-tight"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            UBIG <span style={{ color: "#FF8C00" }}>LMS</span>
+          </span>
+        </a>
+
+        <div className="my-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold mb-6"
+              style={{
+                borderColor: "rgba(255,140,0,0.3)",
+                background: "rgba(255,140,0,0.08)",
+                color: "#FF8C00",
+              }}
+            >
+              <Sparkles size={12} /> Bergabung dengan 12.000+ peserta
+            </div>
+            <h1
+              className="text-5xl font-extrabold text-slate-900 leading-tight mb-4 tracking-tight"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              Karier IT Anda
+              <br />
+              <span
+                style={{
+                  backgroundImage:
+                    "linear-gradient(135deg, #FF8C00 0%, #FFA726 60%, #FFB74D 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                dimulai di sini.
+              </span>
+            </h1>
+            <p
+              className="text-slate-600 text-sm leading-relaxed mb-10 max-w-xs"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              Pembelajaran interaktif dan terstruktur. Pantau progres Anda,
+              kembangkan keahlian, dan raih sertifikasi IT lebih cepat dari
+              sebelumnya.
+            </p>
+            <div className="space-y-4">
+              {features.map(({ icon: Icon, text }, i) => (
+                <motion.div
+                  key={text}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
+                  className="flex items-center gap-3"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border"
+                    style={{
+                      background: "rgba(255,140,0,0.1)",
+                      borderColor: "rgba(255,140,0,0.2)",
+                    }}
+                  >
+                    <Icon size={14} style={{ color: "#FF8C00" }} />
+                  </div>
+                  <span className="text-sm text-slate-600">{text}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function AuthPage() {
@@ -592,10 +714,15 @@ export default function AuthPage() {
       `}</style>
 
       <div
-        className="min-h-screen flex"
+        className="h-screen w-full flex overflow-hidden"
         style={{ fontFamily: "Poppins, sans-serif" }}
       >
-        <div className="flex-1 flex items-center justify-center p-6 sm:p-10 bg-white relative">
+        {/* Panel Samping - Muncul di Layar Besar */}
+        <BrandPanel />
+
+        {/* Panel Kanan (Form) */}
+        <div className="flex-1 flex items-center justify-center p-6 sm:p-10 bg-white relative overflow-y-auto">
+          {/* Logo untuk Mobile (Layar Kecil) */}
           <a
             href="/"
             className="lg:hidden absolute top-6 left-6 flex items-center gap-2 cursor-pointer"
@@ -607,7 +734,7 @@ export default function AuthPage() {
               <GraduationCap size={17} className="text-white" />
             </div>
             <span className="font-bold text-slate-900 text-lg tracking-tight">
-              Edu<span style={{ color: "#FF8C00" }}>Track</span>
+              UBIG <span style={{ color: "#FF8C00" }}>LMS</span>
             </span>
           </a>
 
@@ -615,9 +742,9 @@ export default function AuthPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full max-w-[400px]"
+            className="w-full max-w-[400px] my-auto pt-10 lg:pt-0"
           >
-            <div className="relative mt-11 flex p-1 mb-6 bg-slate-100 rounded-2xl cursor-pointer">
+            <div className="relative flex p-1 mb-6 bg-slate-100 rounded-2xl cursor-pointer">
               <motion.div
                 layout
                 layoutId="pill"
@@ -639,7 +766,7 @@ export default function AuthPage() {
                     fontFamily: "Poppins, sans-serif",
                   }}
                 >
-                  {m === "login" ? "Sign In" : "Register"}
+                  {m === "login" ? "Masuk" : "Daftar"}
                 </button>
               ))}
             </div>
@@ -656,7 +783,7 @@ export default function AuthPage() {
                 <motion.div
                   key={mode}
                   custom={dir}
-                  variants={slideVariants}
+                  variants={slideVariants as any}
                   initial="enter"
                   animate="center"
                   exit="exit"
@@ -671,12 +798,12 @@ export default function AuthPage() {
             </div>
 
             <p className="text-center mt-5 text-xs text-slate-400">
-              <a
+              <link
                 href="/"
                 className="hover:text-slate-600 transition-colors cursor-pointer"
               >
-                ← Back to EduTrack home
-              </a>
+                ← Kembali ke Beranda UBIG
+              </link>
             </p>
           </motion.div>
         </div>
