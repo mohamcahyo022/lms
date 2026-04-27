@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/browser";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Gamepad2, ChartLine, MessageSquare, Bot } from "lucide-react";
 
-import { Course, View, TeacherStep, StudyPhase } from "./types";
+import { Course, View, TeacherStep, StudyPhase, Material } from "./types";
 import { LogicCourse } from "./LogicCourse";
 import { Sidebar, Topbar, EmptyPage, F } from "./components/SharedUI";
 import {
