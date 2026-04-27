@@ -826,7 +826,11 @@ const Step2 = ({
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center text-xs font-bold text-white shrink-0"
-                    style={{ background: TYPE_CLR[mat.type] }}
+                    style={{
+                      background:
+                        TYPE_CLR[mat.type as keyof typeof TYPE_CLR] ||
+                        "#FF8C00",
+                    }}
                   >
                     {i + 1}
                   </div>
@@ -835,7 +839,11 @@ const Step2 = ({
                       <span className="font-bold text-slate-900 text-sm">
                         {mat.title}
                       </span>
-                      <Badge label={mat.type} color={TYPE_CLR[mat.type]} sm />
+                      <Badge
+                        label={mat.type}
+                        color={TYPE_CLR[mat.type as keyof typeof TYPE_CLR]}
+                        sm
+                      />
                     </div>
                     <p className="text-xs text-slate-500 truncate">
                       {mat.description}
