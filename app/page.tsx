@@ -28,19 +28,21 @@ import {
 
 // ─── Animation Variants ───────────────────────────────────────────────────────
 
-const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 32 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
-  },
-});
+// ✅ FIX: Ditambahkan 'as const' dan 'as any' agar TypeScript Vercel aman
+const fadeUp = (delay = 0) =>
+  ({
+    hidden: { opacity: 0, y: 32 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] as const },
+    },
+  }) as any;
 
 const stagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.09 } },
-};
+} as any;
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 
@@ -65,7 +67,7 @@ function Navbar() {
     <motion.nav
       initial={{ y: -64, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } as any}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-100"
@@ -78,7 +80,7 @@ function Navbar() {
         <a href="/" className="flex items-center gap-2">
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center"
-            style={{ background: "#FF8C00" }} // Logonya Tetap Orange
+            style={{ background: "#FF8C00" }}
           >
             <GraduationCap size={17} className="text-white" />
           </div>
@@ -298,7 +300,13 @@ function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.88 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          transition={
+            {
+              duration: 0.9,
+              delay: 0.25,
+              ease: [0.22, 1, 0.36, 1] as const,
+            } as any
+          }
           style={{ x: springX, y: springY }}
           className="relative flex items-center justify-center"
         >
@@ -1173,7 +1181,12 @@ function FAQ() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+                    transition={
+                      {
+                        duration: 0.34,
+                        ease: [0.22, 1, 0.36, 1] as const,
+                      } as any
+                    }
                   >
                     <div className="px-5 pb-5">
                       <div className="h-px bg-slate-100 mb-4" />
