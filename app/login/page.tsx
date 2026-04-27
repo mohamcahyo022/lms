@@ -594,7 +594,7 @@ function BrandPanel() {
       />
 
       <div className="relative z-10 flex flex-col h-full p-12">
-        <link
+        <a
           href="/"
           className="flex items-center gap-2.5 mb-auto cursor-pointer w-fit"
         >
@@ -610,7 +610,7 @@ function BrandPanel() {
           >
             UBIG <span style={{ color: "#FF8C00" }}>LMS</span>
           </span>
-        </link>
+        </a>
 
         <div className="my-auto">
           <motion.div
@@ -723,7 +723,7 @@ export default function AuthPage() {
         {/* Panel Kanan (Form) */}
         <div className="flex-1 flex items-center justify-center p-6 sm:p-10 bg-white relative overflow-y-auto">
           {/* Logo untuk Mobile (Layar Kecil) */}
-          <link
+          <a
             href="/"
             className="lg:hidden absolute top-6 left-6 flex items-center gap-2 cursor-pointer"
           >
@@ -736,7 +736,7 @@ export default function AuthPage() {
             <span className="font-bold text-slate-900 text-lg tracking-tight">
               UBIG <span style={{ color: "#FF8C00" }}>LMS</span>
             </span>
-          </link>
+          </a>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -798,12 +798,12 @@ export default function AuthPage() {
             </div>
 
             <p className="text-center mt-5 text-xs text-slate-400">
-              <link
+              <a
                 href="/"
                 className="hover:text-slate-600 transition-colors cursor-pointer"
               >
                 ← Kembali ke Beranda UBIG
-              </link>
+              </a>
             </p>
           </motion.div>
         </div>
